@@ -12,10 +12,11 @@ body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: 300;
     font-weight: 400;
-    height: auto !important;
     height: 100%;
     min-height: 100%;
     text-rendering: optimizeLegibility;
+    display: flex;
+    flex-direction: column;
 }
  
 header {
@@ -25,6 +26,7 @@ header {
     flex-direction: column;
     text-align: center;
     z-index: 100;
+    flex: 0;
 }
  
     header > div#title {
@@ -145,56 +147,30 @@ header {
 
 footer {
     border-top: thick double #ff0000;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
     background-color: rgba(51,51,51,1);
     z-index: 100;
     line-height: 25px;
+    flex: 0;
 }
 
 div#primary {
-    position: fixed;
-    top: 80px;
-    height: auto;
+    flex: 1;
     width: 100%;
-    bottom: 25px;
-}
-
-div#primary > div.statusbar {
-    position: fixed;
-    bottom: 25px;
-    display: block;
-    line-height: 35px;
-    font-weight: bold;
-}
-
-    div#primary > div.statusbar > div.status {
-        display: none;
-    }
-    div#primary > div.statusbar > div.error > h2 {
-        color: red;
-    }
-
-    div#primary > div.statusbar > div.success > h2 {
-        color: green;
-    }
-
-div#primary > div.tool {
-    position: fixed;
-    bottom: 60px;
-    top: 80px;
-    width: 100%;
-    height: auto;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-    div#primary > div.tool > div {
+    div#primary > div {
         width: 95%;
         margin: 0 auto;
     }
 
-    div#primary > div.tool > div#input > div.flex-button > button {
+    div#primary > div#input > div.flex-button {
+        display: flex;
+        flex-direction: column;
+    }
+    div#primary > div#input > div.flex-button > button {
         min-height: 2em;
         line-height: 2em;
         text-align: center;
@@ -202,15 +178,14 @@ div#primary > div.tool {
         border-radius: .25em;
         padding: 0.1em;
         margin: 0.25em auto;
-        display: block;
         width: 100%;
     }
 
-    div#primary > div.tool > div#input > div.textarea > textarea {
+    div#primary > div#input > div.textarea > textarea {
         width: 100%;
     }
 
-    div#primary > div.tool > div#parsed {
+    div#primary > div#parsed {
         display: none;
     }
 
@@ -227,7 +202,6 @@ div#primary > div.tool {
         flex-direction: row;
         line-height: 90px;
         padding: 0 3rem;
-        position: fixed;
         text-align: left;
         width: 100%;
     }
@@ -299,37 +273,26 @@ div#primary > div.tool {
     }
 
     div#primary {
-        top: 95px;
-    }
-
-    div#primary > div.tool {
-        top: 95px;
         overflow-y: hidden;
     }
 
-    div#primary > div.tool > div#input > div.flex-button > button {
+    div#primary > div#input > div.flex-button {
+        flex-direction: row;
+        width: 24em;
+    }
+
+    div#primary > div#input > div.flex-button > button {
         min-height: 1em;
         line-height: 1em;
         font-size: 1em;
-        display: inline;
-        width: auto;
     }
 
-    div#primary > div.tool > div#input > div.textarea > textarea {
-        max-width: 46ch;
+    div#primary > div#input > div.textarea > textarea {
+        max-width: 30em;
     }
 
-    div#primary > div.tool > div#output {
+    div#primary > div#output {
         overflow-y: auto;
-        position: fixed;
-        bottom: 60px;
-        top: 180px;
-        width: 100%;
-        margin: 0 auto;
     }
 
-    div#primary > div.tool > div#output > pre {
-        width: 95%;
-        margin: 0 auto;
-    }
 }
