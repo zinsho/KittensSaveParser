@@ -7,11 +7,8 @@ function decodeSave () {
         if (result == null) { throw "Error" }
         var saveData = JSON.parse(result)
         out.textContent = result;
-        $('.success').css('display', 'block');
-
         displayOutput(saveData);
     } catch (e) {
-        $('.error').css('display', 'block');
     };
 };
 

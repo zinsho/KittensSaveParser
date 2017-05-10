@@ -33,35 +33,24 @@
     </header>
     <!-- Body -->
     <div id="primary">
-        <!-- Status messages -->
-        <div class="statusbar">
-            <div class="error status">
-                <h2>Invalid Save</h2>
+        <div id ="input">
+            <div class="textArea">
+                <textarea id="saveData"></textarea>
             </div>
-            <div class="success status">
-                <h2>Save decoded</h2>
+            <div class="flex-button">
+                <button onClick="decodeSave()">Decode</button>
+                <button onClick="copy()">Copy as Text</button>
+                <button onClick="copy(true)">Copy as code (Reddit)</button>
             </div>
         </div>
-        <div id="parser" class="tool">
-            <!-- Re-align buttons and enlarge for mobile -->
-            <div id ="input">
-                <div class="textArea">
-                    <textarea id="saveData"></textarea>
-                </div>
-                <div class="flex-button">
-                    <button onClick="decodeSave()">Decode</button>
-                    <button onClick="copy()">Copy as Text</button>
-                    <button onClick="copy(true)">Copy as code (Reddit)</button>
-                </div>
-            </div>
-            <!-- Hide parse data for processing -->
-            <div id="parsed">
-                <textare id="parseDest"></textarea>
-            </div>
+        <!-- Hide parse data for processing -->
+        <div id="parsed">
+            <textare id="parseDest"></textarea>
+        </div>
 
-            <div id="output">
-                <div class="tics">```</div>
-                <pre id="textFormat">
+        <div id="output">
+            <div class="tics">```</div>
+            <pre id="textFormat">
 Year:           <span id="year"></span>
 Kittens:        <span id="kittens"></span>
 Karma:          <span id="karma"></span>
@@ -76,12 +65,9 @@ Available Workshop Upgrades:
 <span id="workshop"></span>
 Buildings:
 <span id="building"></span></pre>
-                <div class="tics">```</div>
-            </div>
-
+            <div class="tics">```</div>
         </div>
     </div>
-
     <!-- EoF comments-->
     <footer id="copyright">
         Copyright 2017 Zinsho &lt;<a href="mailto:zinsho@gmail.com">zinsho@gmail.com</a>&gt;
