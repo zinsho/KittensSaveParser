@@ -97,10 +97,6 @@ function passBuildings(element, value, unlocked) {
 }
 
 function displayOutput (data) {
-    // Padding for initial data
-    var longNum = Math.max(data.calendar.year, data.village.maxKittens,data.resources.karma,data.resources.paragon,data.resources.burnedParagon).toString().length
-    var longArr = Array(longNum).join(' ')
-
     // Lookup resource values for paragon/karma
     var lookup = {}
     for (x in data.resources) {
@@ -108,11 +104,12 @@ function displayOutput (data) {
     }
 
     // Provide data
-    passValue('year', pad(longArr, data.calendar.year, true));
-    passValue('kittens', pad(longArr, data.village.maxKittens, true));
-    passValue('karma', pad(longArr, lookup['karma'], true));
-    passValue('paragon', pad(longArr, lookup['paragon'], true));
-    passValue('burnedParagon', pad(longArr, lookup['burnedParagon'], true));
+    passValue('year', data.calendar.year);
+    passValue('kittens', data.village.maxKittens);
+    var Karma = lookup['karma']
+    passValue('karma', Karma.toFixed(3));
+    passValue('paragon', lookup['paragon']);
+    passValue('burnedParagon', lookup['burnedParagon']);
     var faith = parseInt(data.religion.faith).toLocaleString();
     passValue('faith',faith);
     passAvailable('science',data.science.techs, true, false);
