@@ -8,6 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="./src/nav.js"></script>
     <script src="https://cdn.rawgit.com/pieroxy/lz-string/master/libs/lz-string.js"></script>
+    <script>
+        $(document).ready(function () {
+            if (localStorage.getItem('saveData')) {
+                var data = JSON.parse(localStorage['saveData']);
+                displayOutput(data);
+        });
+    </script>
 </head>
 
 <body>
