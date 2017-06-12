@@ -6,6 +6,9 @@ function decodeSave () {
     try {
         if (result == null) { throw "Error" }
         var saveData = JSON.parse(result)
+        try {
+            localStorage['saveData'] = result;
+        } catch (e) {};
         out.textContent = result;
         displayOutput(saveData);
     } catch (e) {
