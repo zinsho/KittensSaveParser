@@ -99,6 +99,20 @@ function passBuildings(element, value, unlocked) {
     }
 }
 
+function passSteamworks(element, value) {
+    var el = document.getElementById(element);
+    while (el.firstChild) {
+        el.removeChild (el.firstChild);
+    };
+    var elementPad = Array(9).join(' ');
+    var oneYearPad = Array(14).join(' ');
+    var twoYearPad = Array(15).join(' ');
+    passValue(element,"- "+pad(elementPad,"Resource")+" "+pad(oneYearPad,"Once per Year")+" "+pad(twoYearPad,"Twice per Year"));
+    for (x in value) {
+        passValue(element,"- "+pad(elementPad,value[x].Resource)+" "+pad(oneYearPad,value[x].oneYear)+" "+pad(twoYearPad,value[x].twoYear));
+    }
+}
+
 function displayOutput (data) {
     // Lookup resource values for paragon/karma
     var lookup = {}
@@ -106,6 +120,7 @@ function displayOutput (data) {
         lookup[data.resources[x].name] = data.resources[x].value
     }
 
+    var steamWorks = getSteamworks (data)
     // Provide data
     passValue('year', data.calendar.year);
     passValue('kittens', data.village.maxKittens);
@@ -119,4 +134,6 @@ function displayOutput (data) {
     passAvailable('workshop',data.workshop.upgrades, true, false);
 
     passBuildings('building', data.buildings, true);
+
+    passSteamworks('steamworks', steamWorks)
 }
