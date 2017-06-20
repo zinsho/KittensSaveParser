@@ -119,8 +119,6 @@ function displayOutput (data) {
     for (x in data.resources) {
         lookup[data.resources[x].name] = data.resources[x].value
     }
-
-    var steamWorks = getSteamworks (data)
     // Provide data
     passValue('year', data.calendar.year);
     passValue('kittens', data.village.maxKittens);
