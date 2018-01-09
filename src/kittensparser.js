@@ -127,7 +127,13 @@ function displayOutput (data) {
     passValue('paragon', lookup['paragon']);
     passValue('burnedParagon', lookup['burnedParagon']);
     var faith = parseInt(data.religion.faith).toLocaleString();
+    var trans = Math.round(Math.log(getTriValueReligion(data.religion.tcratio)));
+    if (trans < 0) { trans = 0};
+    var apoc = (getTriValueReligion(data.religion.faithRatio)*100).toFixed(1) + " %";
     passValue('faith',faith);
+    passValue('faithBonus',faithBonus);
+    passValue('trans',trans);
+    passValue('apoc',apoc);
     passAvailable('science',data.science.techs, true, false);
     passAvailable('workshop',data.workshop.upgrades, true, false);
 
