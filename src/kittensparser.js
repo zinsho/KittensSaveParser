@@ -129,7 +129,7 @@ function displayOutput (data) {
     var faith = parseInt(data.religion.faith).toLocaleString();
     var trans = Math.round(Math.log(getTriValueReligion(data.religion.tcratio)));
     if (trans < 0) { trans = 0};
-    var apoc = (getTriValueReligion(data.religion.faithRatio)*100).toFixed(1) + " %";
+    var apoc = (getTriValueReligion(data.religion.faithRatio)).toFixed(1) + " %";
     passValue('faith',faith);
     passValue('trans',trans);
     passValue('apoc',apoc);
