@@ -74,7 +74,6 @@ function maxStrLen (data, key) {
         var string = data[x][key].length
         count.push(string);
     }
-    alert(count)
     return Math.max.apply(null, count)+1
 }
 
