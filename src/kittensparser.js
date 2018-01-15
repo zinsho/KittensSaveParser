@@ -36,13 +36,15 @@ function copy (format) {
 
 // Parsing functions
 function pad(pad, str, padLeft) {
-  if (typeof str === 'undefined') 
-    return pad;
-  if (padLeft) {
-    return (pad + str).slice(-pad.length);
-  } else {
-    return (str + pad).substring(0, pad.length);
-  }
+    // add one extra space to ensure no clipping
+    pad = pad+' ';
+    if (typeof str === 'undefined') 
+        return pad;
+    if (padLeft) {
+        return (pad + str).slice(-pad.length);
+    } else {
+        return (str + pad).substring(0, pad.length);
+    }
 }
 
 function passValue(element, value, newline, nodelete) {
@@ -61,9 +63,19 @@ function passValue(element, value, newline, nodelete) {
 function maxIntLen (data, key) {
     var count = [];
     for (x in data) {
-        count.push(data[x].key)
+        count.push(data[x][key])
     }
     return Math.max.apply(null, count).toString().length
+}
+
+function maxStrLen (data, key) {
+    var count = [];
+    for (x in data) {
+        var string = data[x][key].length
+        count.push(string);
+    }
+    alert(count)
+    return Math.max.apply(null, count)+1
 }
 
 function passAvailable(element, value, unlocked, researched) {
@@ -83,9 +95,9 @@ function passBuildings(element, value, unlocked) {
     while (el.firstChild) {
         el.removeChild (el.firstChild);
     };
-    var totalpad = Array(maxIntLen(element, "val")).join(' ')
-    var onpad    = Array(maxIntLen(element, "on")).join(' ')
-    var NamePad  = Array(15).join(' ')
+    var totalpad = Array(maxIntLen(value, "val")).join(' ')
+    var onpad    = Array(maxIntLen(value, "on")).join(' ')
+    var NamePad  = Array(maxStrLen(value, "name")).join(' ')
     for (x in value) {
         if (value[x].unlocked == unlocked) {
             var onText = ""
@@ -99,17 +111,17 @@ function passBuildings(element, value, unlocked) {
     }
 }
 
-function passSteamworks(element, value) {
+function passKittens(element, value, unlocked) {
     var el = document.getElementById(element);
     while (el.firstChild) {
         el.removeChild (el.firstChild);
     };
-    var elementPad = Array(9).join(' ');
-    var oneYearPad = Array(14).join(' ');
-    var twoYearPad = Array(15).join(' ');
-    passValue(element,"- "+pad(elementPad,"Resource")+" "+pad(oneYearPad,"Once per Year")+" "+pad(twoYearPad,"Twice per Year"));
+    var namePad  = Array(maxStrLen(value, "name")).join(' ');
+    var totalPad = Array(maxIntLen(value, "value")).join(' ');
     for (x in value) {
-        passValue(element,"- "+pad(elementPad,value[x].Resource)+" "+pad(oneYearPad,value[x].oneYear)+" "+pad(twoYearPad,value[x].twoYear));
+        if (value[x].unlocked == unlocked) {
+            passValue(element, "- "+pad(namePad,value[x].name) + " " + pad(totalPad,value[x].value, true), true, true);
+        }
     }
 }
 
@@ -135,8 +147,6 @@ function displayOutput (data) {
     passValue('apoc',apoc);
     passAvailable('science',data.science.techs, true, false);
     passAvailable('workshop',data.workshop.upgrades, true, false);
-
+    passKittens('kittensData',data.village.jobs, true)
     passBuildings('building', data.buildings, true);
-
-    passSteamworks('steamworks', steamWorks)
 }
